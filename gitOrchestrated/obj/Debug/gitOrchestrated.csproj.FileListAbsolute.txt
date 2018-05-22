@@ -1,0 +1,15 @@
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\obj\Debug\gitOrchestrated.csprojAssemblyReference.cache
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\obj\Debug\gitOrchestrated.Form1.resources
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\obj\Debug\gitOrchestrated.Properties.Resources.resources
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\obj\Debug\gitOrchestrated.csproj.GenerateResource.cache
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\obj\Debug\gitOrchestrated.csproj.CoreCompileInputs.cache
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\bin\Debug\gitOrchestrated.exe.config
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\bin\Debug\gitOrchestrated.exe
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\bin\Debug\gitOrchestrated.pdb
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\bin\Debug\WebDriver.dll
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\bin\Debug\WebDriver.xml
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\obj\Debug\gitOrchestrated.csproj.CopyComplete
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\obj\Debug\gitOrchestrated.exe
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\obj\Debug\gitOrchestrated.pdb
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\bin\Debug\WebDriver.Support.dll
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\bin\Debug\WebDriver.Support.xml
