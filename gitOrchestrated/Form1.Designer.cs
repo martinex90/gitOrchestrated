@@ -37,7 +37,7 @@
             this.btn_submit.Name = "btn_submit";
             this.btn_submit.Size = new System.Drawing.Size(75, 23);
             this.btn_submit.TabIndex = 0;
-            this.btn_submit.Text = "button1";
+            this.btn_submit.Text = "Open";
             this.btn_submit.UseVisualStyleBackColor = true;
             this.btn_submit.Click += new System.EventHandler(this.Btn_submit_Click);
             // 
