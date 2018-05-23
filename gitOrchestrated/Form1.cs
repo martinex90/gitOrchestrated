@@ -33,9 +33,6 @@ namespace gitOrchestrated
         public string endpointProtection = "yes";
 
 
- 
-
-
 
         public Form1()
         {
@@ -51,7 +48,6 @@ namespace gitOrchestrated
             
             try
             {
-                //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
                 driver.Url = "https://itsmweb.tdccloud.dk/Account/Login.aspx";
                 driver.FindElement(By.Id("MainContent_Login_ID_UserName")).SendKeys("mape");
                 driver.FindElement(By.Id("MainContent_Login_ID_Password")).SendKeys(File.ReadAllText(@"C:\Users\mape\Desktop\txt\pw.txt"));
@@ -107,6 +103,7 @@ namespace gitOrchestrated
                 catch (Exception)
                 {
                     Thread.Sleep(1000);
+                    //workaround to avoid contextswitchdeadlock exception by pumping calls, since this is  a GUI thread.
                     Thread.CurrentThread.Join(10);
                     if (i == 89)
                         MessageBox.Show("failed to locate element within 90 seconds");
@@ -127,6 +124,7 @@ namespace gitOrchestrated
                 catch (Exception)
                 {
                     Thread.Sleep(1000);
+                    //workaround to avoid contextswitchdeadlock exception by pumping calls, since this is  a GUI thread.
                     Thread.CurrentThread.Join(10);
                     if (i == 89)
                         MessageBox.Show("failed to locate element within 90 seconds");
@@ -162,6 +160,7 @@ namespace gitOrchestrated
                 if (lastUpdate == newUpdate)
                 {
                     Thread.Sleep(1000);
+                    //workaround to avoid contextswitchdeadlock exception by pumping calls, since this is  a GUI thread.
                     Thread.CurrentThread.Join(10);
                 }
                 else
