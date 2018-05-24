@@ -33,7 +33,7 @@
             // 
             // btn_submit
             // 
-            this.btn_submit.Location = new System.Drawing.Point(73, 56);
+            this.btn_submit.Location = new System.Drawing.Point(12, 457);
             this.btn_submit.Name = "btn_submit";
             this.btn_submit.Size = new System.Drawing.Size(75, 23);
             this.btn_submit.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(407, 237);
+            this.ClientSize = new System.Drawing.Size(681, 492);
             this.Controls.Add(this.btn_submit);
             this.Name = "Form1";
             this.Text = "Form1";

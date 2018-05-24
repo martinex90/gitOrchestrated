@@ -19,15 +19,15 @@ namespace gitOrchestrated
     public partial class Form1 : Form
     {
         public string vdcName = "TDCHCXT-VDC02";
-        public string vmName = "mape2008x32DC";
+        public string vmName = "Lmape2008x64EP";
         public string templateVer = "Test";
-        public string winVer = "Windows2008Datacenter";
-        public string winEdition = "Datacenter";
+        public string winVer = "Windows2008x64Enterprise";
+        public string winEdition = "Enterprise";
         public string CPUno = "2.0";
-        public string RAMno = "4.0";
+        public string RAMno = "8.0";
         public string ADjoin = "no";
         public string orgNetworkName = "TDCHCXT_PZ_IND2";
-        public string IPadd = "10.0.1.51";
+        public string IPadd = "10.0.1.54";
         public string DNS1 = "10.0.1.10";
         public string DNS2 = "10.0.1.11";
         public string endpointProtection = "yes";
@@ -76,8 +76,9 @@ namespace gitOrchestrated
             }
             catch (NoSuchElementException ex)
             {
-                MessageBox.Show(ex.Message);
+                
                 driver.Quit();
+                throw ex;
             }
             finally
             {
@@ -102,7 +103,7 @@ namespace gitOrchestrated
                 }
                 catch (Exception)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1500);
                     //workaround to avoid contextswitchdeadlock exception by pumping calls, since this is  a GUI thread.
                     Thread.CurrentThread.Join(10);
                     if (i == 89)
@@ -123,7 +124,7 @@ namespace gitOrchestrated
                 }
                 catch (Exception)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1500);
                     //workaround to avoid contextswitchdeadlock exception by pumping calls, since this is  a GUI thread.
                     Thread.CurrentThread.Join(10);
                     if (i == 89)
@@ -151,15 +152,15 @@ namespace gitOrchestrated
                     IWebElement newel = driver.FindElement(By.Id("div1"));
                     newUpdate = newel.Text.Substring(newel.Text.IndexOf("Last update:"));
                 }
-                catch (StaleElementReferenceException)
+                catch (Exception)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1500);
                     break;
                 }
 
                 if (lastUpdate == newUpdate)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1500);
                     //workaround to avoid contextswitchdeadlock exception by pumping calls, since this is  a GUI thread.
                     Thread.CurrentThread.Join(10);
                 }
