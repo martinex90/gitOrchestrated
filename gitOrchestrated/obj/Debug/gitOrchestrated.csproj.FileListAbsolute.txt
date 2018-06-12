@@ -14,3 +14,4 @@ C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\bin\Debug\WebDriver.S
 C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\bin\Debug\WebDriver.Support.xml
 C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\obj\Debug\gitOrchestrated.Form2.resources
 C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\obj\Debug\gitOrchestrated.chbTest.resources
+C:\Users\mape\source\repos\gitOrchestrated\gitOrchestrated\obj\Debug\gitOrchestrated.csproj.ResolveComReference.cache

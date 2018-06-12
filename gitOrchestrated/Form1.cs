@@ -141,6 +141,8 @@ namespace gitOrchestrated
 
         private void btnlogin_Click(object sender, EventArgs e)
         {
+            /*
+             
             Form2 f2 = new Form2();
             f2.Owner = this;
             f2.ShowDialog();
@@ -149,6 +151,12 @@ namespace gitOrchestrated
                 btnLogin.Text = Credential.Username;
             if (f2.LoginResult == "Failed")
                 btnLogin.Text = "Failed";
+
+    */
+
+            ExcelImport ei = new ExcelImport(@"C:\Users\mape\Documents\HardwareInventory.xlsx");
+            ei.ExcelImportServer();
+
         }
 
         private void btnLogin_Enter(object sender, EventArgs e)
