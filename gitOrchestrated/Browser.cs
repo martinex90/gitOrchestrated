@@ -23,21 +23,16 @@ namespace gitOrchestrated
             Application.UseWaitCursor = true;
         }
 
+        public Browser(Server srv)
+        {
+            Application.UseWaitCursor = true;
+            server = srv;
+        }
+
         private string lastUpdate = null;
 
-        public string VDCName { get; set; }
-        public string VMName { get; set; }
-        public string TemplateVer { get; set; }
-        public string WinVer { get; set; }
-        public string WinEdition { get; set; }
-        public string CPUNo { get; set; }
-        public string RAM { get; set; }
-        public string ADJoin { get; set; }
-        public string OrgNetworkName { get; set; }
-        public string IPAdd { get; set; }
-        public string DNS1 { get; set; }
-        public string DNS2 { get; set; }
-        public string EndpointProtection { get; set; }
+        private Server server;
+
 
         private IWebDriver InitialiseWebDriver()
         {
@@ -65,31 +60,32 @@ namespace gitOrchestrated
                 SendKeysAndVerify(driver, "MainContent_Login_ID_UserName", Credential.Username);
                 SendKeysAndVerify(driver, "MainContent_Login_ID_Password", Credential.Password);
                 NavigateAndWaitForElement(driver, "MainContent_Login_ID_Button1", "loginuser");
-                NavigateAndWaitForElement(driver, "https://itsmweb.tdccloud.dk/workflows3/?Type=Tests", "//span[text()='Add new Windows server with vApp in vCloud with StormUpdate 3.0.1']");
+                NavigateAndWaitForElement(driver, "https://itsmweb.tdccloud.dk/workflows3/?Type=vCloud", "//span[text()='Add new Windows server with vApp in vCloud with StormUpdate 3.0.1']");
                 NavigateAndWaitForElement(driver, "//span[text()='Add new Windows server with vApp in vCloud with StormUpdate 3.0.1']", "MainContent_vdcname");
-                SelectDropdown(driver, "MainContent_vdcname", VDCName);
-                SendKeysAndVerify(driver, "MainContent_VM_vmName", VMName);
-                SelectDropdown(driver, "MainContent_VM_TemplateCurrentOrOld", TemplateVer);
-                SelectDropdown(driver, "MainContent_VM_WindowsVersion", WinVer);
-                SelectDropdown(driver, "MainContent_VM_WindowsEdition", WinEdition);
-                SelectDropdown(driver, "MainContent_VM_cpuNumber", CPUNo);
-                SelectDropdown(driver, "MainContent_VM_RAM", RAM);
-                SelectDropdown(driver, "MainContent_VM_ADJoin", ADJoin);
-                SelectDropdown(driver, "MainContent_orgnetworkname", OrgNetworkName);
-                driver.FindElement(By.Id("MainContent_VM_ipAddress")).SendKeys(IPAdd);
-                driver.FindElement(By.Id("MainContent_VM_IPDNS1")).SendKeys(DNS1);
-                driver.FindElement(By.Id("MainContent_VM_IPDNS2")).SendKeys(DNS2);
-                SelectDropdown(driver, "MainContent_VM_valueString_MicrosoftSCEP", EndpointProtection);
+                SelectDropdown(driver, "MainContent_vdcname", server.VDCName);
+                SendKeysAndVerify(driver, "MainContent_VM_vmName", server.VMName);
+                SelectDropdown(driver, "MainContent_VM_TemplateCurrentOrOld", server.TemplateVer);
+                SelectDropdown(driver, "MainContent_VM_WindowsVersion", server.WinVer);
+                SelectDropdown(driver, "MainContent_VM_WindowsEdition", server.WinEdition);
+                SelectDropdown(driver, "MainContent_VM_cpuNumber", server.CPUNo);
+                SelectDropdown(driver, "MainContent_VM_RAM", server.RAM);
+                SelectDropdown(driver, "MainContent_VM_ADJoin", server.ADJoin);
+                SelectDropdown(driver, "MainContent_orgnetworkname", server.OrgNetworkName);
+                driver.FindElement(By.Id("MainContent_VM_ipAddress")).SendKeys(server.IPAdd);
+                driver.FindElement(By.Id("MainContent_VM_IPDNS1")).SendKeys(server.DNS1);
+                driver.FindElement(By.Id("MainContent_VM_IPDNS2")).SendKeys(server.DNS2);
+                SelectDropdown(driver, "MainContent_VM_valueString_MicrosoftSCEP", server.EndpointProtection);
                 NavigateAndWaitForElement(driver, "MainContent_ValidateWorkflow", "MainContent_RunWorkflow");
                 if (test.Checked == false)
                 {
                     NavigateAndWaitForElement(driver, "MainContent_RunWorkflow", "TopMenuContent_SUB1");
                 }
-                
+
+                MessageBox.Show("The following server succeeded:" + server.VMName + ".\r\n This browserwindow will close.", "Succeeded: " + server.VMName);
             }
             catch (NoSuchElementException ex)
             {
-                MessageBox.Show("The following server failed:" + VMName + ". \r\n The following error was thrown: " + ex.Message + ".\r\n This browserwindow will close.", "Failed: "+VMName);
+                MessageBox.Show("The following server failed:" + server.VMName + ". \r\n The following error was thrown: " + ex.Message + ".\r\n This browserwindow will close.", "Failed: "+server.VMName);
                 return;
             }
             catch(ArgumentOutOfRangeException ex)

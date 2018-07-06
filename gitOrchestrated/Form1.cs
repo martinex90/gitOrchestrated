@@ -42,55 +42,58 @@ namespace gitOrchestrated
                 if (panelctrl is Panel)
                 {
                     int i = 0;
-                    Browser bowser = new Browser();
+                    
+                    Server server = new Server();
 
                     foreach (Control boxctrl in panelctrl.Controls)
                     {
                         switch (i)
                         {
                             case 0:
-                                bowser.VDCName = boxctrl.Text;
+                                server.VDCName = boxctrl.Text;
                                 break;
                             case 1:
-                                bowser.VMName = boxctrl.Text;
+                                server.VMName = boxctrl.Text;
                                 break;
                             case 2:
-                                bowser.TemplateVer = boxctrl.Text;
+                                server.TemplateVer = boxctrl.Text;
                                 break;
                             case 3:
-                                bowser.WinVer = boxctrl.Text;
+                                server.WinVer = boxctrl.Text;
                                 break;
                             case 4:
-                                bowser.WinEdition = boxctrl.Text;
+                                server.WinEdition = boxctrl.Text;
                                 break;
                             case 5:
-                                bowser.CPUNo = boxctrl.Text;
+                                server.CPUNo = boxctrl.Text;
                                 break;
                             case 6:
-                                bowser.RAM = boxctrl.Text;
+                                server.RAM = boxctrl.Text;
                                 break;
                             case 7:
-                                bowser.ADJoin = boxctrl.Text;
+                                server.ADJoin = boxctrl.Text;
                                 break;
                             case 8:
-                                bowser.OrgNetworkName = boxctrl.Text;
+                                server.OrgNetworkName = boxctrl.Text;
                                 break;
                             case 9:
-                                bowser.IPAdd = boxctrl.Text;
+                                server.IPAdd = boxctrl.Text;
                                 break;
                             case 10:
-                                bowser.DNS1 = boxctrl.Text;
+                                server.DNS1 = boxctrl.Text;
                                 break;
                             case 11:
-                                bowser.DNS2 = boxctrl.Text;
+                                server.DNS2 = boxctrl.Text;
                                 break;
                             case 12:
-                                bowser.EndpointProtection = boxctrl.Text;
+                                server.EndpointProtection = boxctrl.Text;
                                 break;
                         }//switch
 
                         i++;
                     }//foreach box
+
+                    Browser bowser = new Browser(server);
 
                     new Thread(() =>
                     {
@@ -112,20 +115,11 @@ namespace gitOrchestrated
             btnBuild.Image = Properties.Resources.brick;
         }
 
-        private int ID = 1;
-        private int X = 227;
+
         private void btnAddPanel_Click(object sender, EventArgs e)
         {
-            CustomPanel pn = new CustomPanel(this, ID, X);
-            ID++;
-            X = X + 135;
-            var x = this.Size.Width + 135;
-            var y = this.Size.Height;
-            this.Size = new Size(x, y);
-
-            x = this.btnLogin.Location.X + 135;
-            y = this.btnLogin.Location.Y;
-            this.btnLogin.Location = new Point(x, y);
+            CustomPanel pn = new CustomPanel(this);
+            pn.CopyFromOriginalPanel();
         }
 
         private void btnAddPanel_Enter(object sender, EventArgs e)
@@ -141,7 +135,6 @@ namespace gitOrchestrated
 
         private void btnlogin_Click(object sender, EventArgs e)
         {
-            /*
              
             Form2 f2 = new Form2();
             f2.Owner = this;
@@ -151,11 +144,6 @@ namespace gitOrchestrated
                 btnLogin.Text = Credential.Username;
             if (f2.LoginResult == "Failed")
                 btnLogin.Text = "Failed";
-
-    */
-
-            ExcelImport ei = new ExcelImport(@"C:\Users\mape\Documents\HardwareInventory.xlsx");
-            ei.ExcelImportServer();
 
         }
 
@@ -167,6 +155,13 @@ namespace gitOrchestrated
         private void btnLogin_Leave(object sender, EventArgs e)
         {
             btnLogin.ForeColor = SystemColors.Control;
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            ExcelImport ei = new ExcelImport(@"C:\Users\mape\Documents\fanovand.xlsx");
+            //MessageBox.Show(ei.ReadCell("B", 2));
+            ei.ExcelImportServer(this);
         }
     }//Form1
 }//gitOchestrated

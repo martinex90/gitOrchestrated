@@ -62,9 +62,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Label();
             this.checkBoxTest = new System.Windows.Forms.CheckBox();
+            this.btnImport = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnBuild)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnImport)).BeginInit();
             this.SuspendLayout();
             // 
             // boxVDCName
@@ -494,6 +496,17 @@
             this.checkBoxTest.Text = "Test?";
             this.checkBoxTest.UseVisualStyleBackColor = true;
             // 
+            // btnImport
+            // 
+            this.btnImport.Image = global::gitOrchestrated.Properties.Resources.GreenPlus;
+            this.btnImport.Location = new System.Drawing.Point(151, 2);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(46, 46);
+            this.btnImport.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnImport.TabIndex = 23;
+            this.btnImport.TabStop = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // chbTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -501,6 +514,7 @@
             this.BackgroundImage = global::gitOrchestrated.Properties.Resources.blueswirl;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(255, 451);
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.checkBoxTest);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label1);
@@ -531,6 +545,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnBuild)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnImport)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -568,8 +583,9 @@
         private System.Windows.Forms.PictureBox btnBuild;
         private System.Windows.Forms.Label lblAddPanel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label btnLogin;
+        public System.Windows.Forms.Label btnLogin;
         private System.Windows.Forms.CheckBox checkBoxTest;
+        private System.Windows.Forms.PictureBox btnImport;
     }
 }
 

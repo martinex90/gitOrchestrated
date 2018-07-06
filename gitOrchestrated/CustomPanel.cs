@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace gitOrchestrated
 {
     class CustomPanel : Form
     {
+        private chbTest form;
+
         private TextBox boxVDCName = new TextBox();
         private TextBox boxVMName = new TextBox();
         private ComboBox boxTemplateVer = new ComboBox();
@@ -26,8 +29,15 @@ namespace gitOrchestrated
 
         private Panel pn = new Panel();
 
-        public CustomPanel(chbTest form, int ID, int StartX)
+        private static int ID = 1;
+        private static int formX;
+        private static int panelX = 227;
+
+
+
+        public CustomPanel(chbTest form1)
         {
+            form = form1;
 
             {
                 // 
@@ -238,39 +248,117 @@ namespace gitOrchestrated
                 pn.Controls.Add(this.boxEPProtection);
                 pn.Controls.Add(this.btnRemovePanel);
                 pn.BackColor = System.Drawing.Color.Transparent;
-                pn.Location = new System.Drawing.Point(StartX, 50);
+                pn.Location = new System.Drawing.Point(panelX, 50);
                 pn.Name = "panel" + ID.ToString();
-                pn.Size = new System.Drawing.Size(129,388);
+                pn.Size = new System.Drawing.Size(129, 388);
                 pn.TabIndex = 4;
 
-
-                // This block of code first gets a collection of all controls in the initial panel.
-                // Then it loops through all controls in the dynamically generated panel, and adds the values from the initial panel to the dynamic panel. 
-                int i = 0;
-                Control.ControlCollection fctrls = form.panel1.Controls;
-                foreach(Control ctrl in pn.Controls)
-                {
-                    if (ctrl is TextBox)
-                    {
-                        TextBox tb = new TextBox();
-                        tb = (TextBox)ctrl;
-                        tb.Text = fctrls[i].Text;
-                    }
-                    if (ctrl is ComboBox)
-                    {
-                        ComboBox cb = new ComboBox();
-                        cb = (ComboBox)ctrl;
-                        cb.Text = fctrls[i].Text;
-                    }
-
-                    i++;
-                }
+            }
 
 
-                form.Controls.Add(this.pn);
+            form.Controls.Add(this.pn);
 
+            ID++;
+            formX = form.Width + 135;
+            panelX = panelX + 135;
+            var Y = form.Height;
+            form.Size = new Size(formX, Y);
+
+            formX = form.btnLogin.Location.X + 135;
+            Y = form.btnLogin.Location.Y;
+            form.btnLogin.Location = new Point(formX, Y);
+        }
+
+
+
+        public void CopyFromOriginalPanel()
+        {
+            // This block of code first gets a collection of all controls in the initial panel.
+            // Then it loops through all controls in the dynamically generated panel, and adds the values from the initial panel to the dynamic panel. 
+            int i = 0;
+            Control.ControlCollection fctrls = form.panel1.Controls;
+            foreach (Control ctrl in pn.Controls)
+            {
+                FillIn(ctrl, fctrls[i].Text);
+
+                i++;
             }
         }
+
+        public void CopyFromServer(Server server)
+        {
+            System.Windows.Forms.Application.UseWaitCursor = true;
+            
+            form.panel1.Dispose();
+            
+
+            int i = 0;
+            
+            foreach (Control ctrl in pn.Controls)
+            {
+                switch (i)
+                {
+                    case 0:
+                        FillIn(ctrl, server.VDCName);
+                        break;
+                    case 1:
+                        FillIn(ctrl, server.VMName);
+                        break;
+                    case 2:
+                        FillIn(ctrl, server.TemplateVer);
+                        break;
+                    case 3:
+                        FillIn(ctrl, server.WinVer);
+                        break;
+                    case 4:
+                        FillIn(ctrl, server.WinEdition);
+                        break;
+                    case 5:
+                        FillIn(ctrl, server.CPUNo);
+                        break;
+                    case 6:
+                        FillIn(ctrl, server.RAM);
+                        break;
+                    case 7:
+                        FillIn(ctrl, server.ADJoin);
+                        break;
+                    case 8:
+                        FillIn(ctrl, server.OrgNetworkName);
+                        break;
+                    case 9:
+                        FillIn(ctrl, server.IPAdd);
+                        break;
+                    case 10:
+                        FillIn(ctrl, server.DNS1);
+                        break;
+                    case 11:
+                        FillIn(ctrl, server.DNS2);
+                        break;
+                    case 12:
+                        FillIn(ctrl, server.EndpointProtection);
+                        break;
+                }
+
+                i++;
+            }
+        }
+
+        public void FillIn(Control ctrl, string prop)
+        {
+            if (ctrl is TextBox)
+            {
+                TextBox tb = new TextBox();
+                tb = (TextBox)ctrl;
+                tb.Text = prop;
+            }
+            if (ctrl is ComboBox)
+            {
+                ComboBox cb = new ComboBox();
+                cb = (ComboBox)ctrl;
+                cb.Text = prop;
+                }
+        }
+
 
         private void btnRemovePanelLeave(object sender, EventArgs e)
         {
