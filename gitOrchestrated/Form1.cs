@@ -159,9 +159,16 @@ namespace gitOrchestrated
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            ExcelImport ei = new ExcelImport(@"C:\Users\mape\Documents\fanovand.xlsx");
-            //MessageBox.Show(ei.ReadCell("B", 2));
-            ei.ExcelImportServer(this);
+            FileDialog fd = new OpenFileDialog();
+            fd.Filter = "Excel Files (*.xlsx)|*.xlsx|All files(*.*)|*.*";
+            fd.FilterIndex = 1;
+            fd.RestoreDirectory = true;
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                ExcelImport ei = new ExcelImport(fd.FileName);
+                //MessageBox.Show(ei.ReadCell("B", 2));
+                ei.ExcelImportServer(this);
+            }
         }
     }//Form1
 }//gitOchestrated

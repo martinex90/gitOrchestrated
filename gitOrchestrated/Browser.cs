@@ -20,11 +20,13 @@ namespace gitOrchestrated
     {
         public Browser()
         {
+            //constructor for checking the user login
             Application.UseWaitCursor = true;
         }
 
         public Browser(Server srv)
         {
+            //constructor for when filling in fields with server information
             Application.UseWaitCursor = true;
             server = srv;
         }
